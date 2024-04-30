@@ -1,0 +1,21 @@
+ouvrir la "Command window", "fenêtre de commande"
+premiere ligne:
+    where python3.9
+Copier cette direction sur bloc de notes, on va l'appeler "key"
+après mettre la prochaine ligne:
+    key -m pip install --upgrade pip
+Après
+    git clone https://github.com/bustacarar/OFI_Color_Project
+si cette ligne marche pas, telecharger le repository as ZIP et extrait
+Prochaine ligne sachant que direction d'interet est la direction du dossier telecharge
+    cd *direction d'interet
+    cd OFI_Color_Project
+    cd GlobalGUI
+Après
+    key -m pip install -r requirements.txt
+il faut attendre que tout soit installer
+Après
+    key setup_cx.py build
+et une fois tout fini tu vas trouver dans le dossier OFI_Color_Project\GlobalGUI\build\exe.win-amd64-3.11
+le .exe sera main.exe
+

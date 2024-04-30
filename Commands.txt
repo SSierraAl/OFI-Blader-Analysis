@@ -1,0 +1,28 @@
+Update pip first of all
+python -m pip install --upgrade pip
+
+Command to update interface:
+pyside6-uic main_pages.ui -o ui_main_pages.py
+
+How to create .exe
+    first do in your terminal
+    
+    cd *directory address*
+    
+    git clone https://github.com/bustacarar/OFI_Color_Project
+    
+    cd OFI_Color_Project
+    
+    cd GlobalGui
+    
+    pip install -r requirements.txt
+    
+    python setup_cx.py build
+    
+    if the last line doesn't work use the next line
+    
+    python3 setup_cx.py build
+    
+    Or
+    
+    python.exe setup_cx.py build

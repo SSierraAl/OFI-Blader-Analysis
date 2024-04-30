@@ -1,0 +1,2 @@
+.PyMAT/
+.GlobalGUI/DataEXP/
