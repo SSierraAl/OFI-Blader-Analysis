@@ -62,9 +62,9 @@ def Init_Arduino(self):
     ############## Laser Parameters ########################
     
     #Number of samples to cath 
-    self.number_of_samples=4096
+    self.number_of_samples=8192
     #Frequency of adquisition (in this case the laser)
-    self.Laser_frequency=500000
+    self.Laser_frequency=2000000
     #Number to mean the fft
     self.Number_to_mean=3
     #Low frequency of the filter
@@ -171,7 +171,6 @@ def Init_Arduino(self):
  
     ##################### Function to save data ##############################
     def Save_data_2(self):
-        #print("escribiendo.........")
         # Copy the data to have every time the data of the moment
         data_to_save=(self.vectors2.copy())
         #data_to_save_Arduino=self.vectors3.copy()
@@ -232,68 +231,7 @@ def Init_Arduino(self):
         self.timerFFT.start()
         self.timerDQ.start()
         self.timerSave.stop()
-    
-    def Save_data():
-        # Stop the other process to don't lose information while we save
-        self.timerPLOT.stop()
-        self.timerFFT.stop()
-        # Copy the data to have every time the data of the moment
-        data_to_save=(self.vectors2.copy())
-        data_to_save_Arduino=self.vectors3.copy()
-        data_to_save_Diode=self.vectorsDiode.copy()
-        # Calculate time axis
-        dataX=np.array(self.Volx)*1000/(self.Laser_frequency)
-        
-        
-        # Format TXT
-        if(self.Format == ".txt"):
-            
-            for j in range (int(self.fileSave)):
-                # Open different file to save the same position of the array
-                with open(str(self.directory+self.nameFile+str(j)+self.Format), "w") as file:
-                    for i in range (int(self.number_of_samples)):
-                        # Copy the data arduino every time it change the file to have the live data
-                        data_to_save_Arduino=self.data_Arduino.copy()
-                        
-                        # Write the file with the format time, laser data, diode data, arduino data
-                        file.write(str(dataX[i])+" "+str(data_to_save[j][i])+"  "+str(data_to_save_Diode[j][i]) +" "+ str(data_to_save_Arduino) +'\n')
-        
-        # Format CSV            
-        elif(self.Format == ".csv"):
-            for j in range (int(self.fileSave)):
-                #Save the data like a list
-                datos1=list(dataX)
-                datos2=list(data_to_save[j])
-                datos3=list(data_to_save_Diode[j])
-                data_to_save_Arduino=self.data_Arduino.copy()
-                
-                #put the list vertical side to side and add the arduino data at right
-                datos=[list(pair)+data_to_save_Arduino for pair in zip(datos1, datos2,datos3)]
-                # Open different file to save the same position of the list
-                with open(str(self.directory+self.nameFile+str(j)+self.Format), "w") as file:
-                    # creation of the writer of csv of the file
-                    writer = csv.writer(file)
-                    for fila in datos:
-                        # Write every row of the final data to save
-                        writer.writerow(fila)
-         
-        # Format MAT    
-        else:
-            for j in range (int(self.fileSave)):
-                data_to_save_Arduino=self.data_Arduino.copy()
-                #Save the data like a list
-                datos1 = list(dataX)
-                datos2 = list(data_to_save[j])
-                datos3=list(data_to_save_Diode[j])
-                #put the list vertical side to side and add the arduino data at right
-                datos=[list(pair)+data_to_save_Arduino for pair in zip(datos1, datos2, datos3)]
-                #put the name of the file as name of the matrix in matlab
-                data_dict = {self.nameFile+str(j): datos}
-                # Write the file
-                scipy.io.savemat(str(self.directory+self.nameFile+str(j)+self.Format), data_dict, format="5", appendmat=False)
-        # relaunch of the FFT and plot process
-        self.timerPLOT.start()
-        self.timerFFT.start()
+
     
     ############################################## Reference#####################################################
     def Put_reference():
@@ -483,27 +421,6 @@ def insert_Arduino_graph2(self):
         self.timerPLOT.start()
     
     #########################################################################################################################################
-     
-    # Update the arrays to save files    
-    #def update_daq_vector(): 
-        # When the size of the array is the size we want
-     #   if(len(self.vectors2) == int(self.fileSave)):
-            # Delete the first value
-      #      self.vectors2.pop(0)
-       #     self.vectors3.pop(0)
-        #    self.vectorsDiode.pop(0)
-         #   self.data_Diode_plot=np.roll(self.data_Diode_plot,-1)
-        # Copy the values in that moment, to don't have always the same value  
-    #    aux_DAQ=self.threadDAQ.DAQ_Data.copy()
-     #   aux_color=self.data_Arduino.copy()
-      #  aux_Diode=self.threadDAQ.DAQ_Diode.copy()
-        
-        # Put the new value in the last space
-     #   self.vectors2.append(aux_DAQ)
-      #  self.vectors3.append(aux_color)
-       # self.vectorsDiode.append(aux_Diode)
-        #aux_diode_plot=np.array(aux_Diode).mean()
-        #self.data_Diode_plot[-1]=(float(aux_diode_plot))
        
     def update_daq_vector():
         self.data_Diode_plot=np.roll(self.data_Diode_plot,-1)

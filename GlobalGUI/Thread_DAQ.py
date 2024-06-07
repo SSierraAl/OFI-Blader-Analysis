@@ -6,8 +6,9 @@ from PyQt6.QtCore import QTimer
 
 import numpy as np
 
-from nidaqmx.stream_readers import AnalogMultiChannelReader
+from nidaqmx.stream_readers import AnalogSingleChannelReader
 import nidaqmx as ni
+import nidaqmx.system
 from nidaqmx import constants
 
 ############################################################################################################################
@@ -102,23 +103,41 @@ class DAQData(QObject):
         self.workerDAQ.moveToThread(self.worker_threadDAQ)
         # start the thread
         self.worker_threadDAQ.start()
-    
+
+        self.workDAQ_requested.emit(0)
+
     #Function to start the thread    
-    def startdaq(self):
-        
-        n=5
-        self.workDAQ_requested.emit(n)
+    #def startdaq(self):    
+    #    n=5
+    #    self.workDAQ_requested.emit(n)
     # Function to copy the data when it's done   
     def completedaq(self):
         
         self.DAQ_Data=(self.workerDAQ.DAQ_Data)
         self.DAQ_Diode=(self.workerDAQ.DAQ_Diode)
+        self.workDAQ_requested.emit(5)
     
     #Function to delete the thread.
     def delete(self):
         
-        self.timerDAQ.stop()
-        self.worker_threadDAQ.quit()  # Detener el hilo
-        self.worker_threadDAQ.wait()  # Esperar a que el hilo finalice
-        self.worker_threadDAQ.deleteLater()
-        self.deleteLater()
+
+        while(self.worker_threadDAQ.isFinished()==False):
+            #self.worker_threadDAQ.wait() 
+            self.worker_threadDAQ.terminate()
+            print('---- Thread deleted -----')
+        # Reset the DAQ Device
+        system = nidaqmx.system.System.local()
+        for device in system.devices:
+            #if device.name == self.DAQ_Device:
+            device.reset_device()
+            print(f"Device {self.DAQ_Device} has been reset.")
+
+
+        try:
+            self.timerDAQ.stop()
+            self.worker_threadDAQ.quit()  # Detener el hilo
+            self.worker_threadDAQ.wait()  # Esperar a que el hilo finalice
+            self.worker_threadDAQ.deleteLater()
+            self.deleteLater()
+        except:
+            pass
