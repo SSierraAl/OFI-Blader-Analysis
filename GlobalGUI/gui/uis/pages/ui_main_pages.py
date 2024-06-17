@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_pagesumtzbu.ui'
+## Form generated from reading UI file 'main_pagesXcMTJQ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -1173,11 +1173,22 @@ class Ui_MainPages(object):
 
         self.gridLayout.addItem(self.verticalSpacer_3, 1, 2, 1, 1)
 
+        self.gridLayout_10 = QGridLayout()
+        self.gridLayout_10.setObjectName(u"gridLayout_10")
+        self.Ok_Button = QPushButton(self.Parameters)
+        self.Ok_Button.setObjectName(u"Ok_Button")
+        self.Ok_Button.setMaximumSize(QSize(100, 25))
+
+        self.gridLayout_10.addWidget(self.Ok_Button, 1, 0, 1, 1)
+
         self.portsButton = QPushButton(self.Parameters)
         self.portsButton.setObjectName(u"portsButton")
         self.portsButton.setMaximumSize(QSize(200, 25))
 
-        self.gridLayout.addWidget(self.portsButton, 7, 4, 1, 1)
+        self.gridLayout_10.addWidget(self.portsButton, 0, 0, 1, 1)
+
+
+        self.gridLayout.addLayout(self.gridLayout_10, 7, 4, 1, 1)
 
         self.Save_Data = QPushButton(self.Parameters)
         self.Save_Data.setObjectName(u"Save_Data")
@@ -1203,12 +1214,6 @@ class Ui_MainPages(object):
         self.verticalSpacer_17 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.gridLayout_4.addItem(self.verticalSpacer_17, 0, 2, 1, 1)
-
-        self.Ok_Button = QPushButton(self.widget_5)
-        self.Ok_Button.setObjectName(u"Ok_Button")
-        self.Ok_Button.setMaximumSize(QSize(100, 25))
-
-        self.gridLayout_4.addWidget(self.Ok_Button, 0, 4, 1, 1)
 
 
         self.verticalLayout_12.addWidget(self.widget_5)
@@ -1776,9 +1781,9 @@ class Ui_MainPages(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">20</span></p></body></html>", None))
+        self.Ok_Button.setText(QCoreApplication.translate("MainPages", u"Stop", None))
         self.portsButton.setText(QCoreApplication.translate("MainPages", u"Start", None))
         self.Save_Data.setText(QCoreApplication.translate("MainPages", u"Save Data", None))
-        self.Ok_Button.setText(QCoreApplication.translate("MainPages", u"Stop", None))
         self.label_14.setText(QCoreApplication.translate("MainPages", u"HGB ratio:", None))
         self.pushButton_Reference.setText(QCoreApplication.translate("MainPages", u"Reference", None))
         self.pushButton_Clear.setText(QCoreApplication.translate("MainPages", u"Clear reference", None))

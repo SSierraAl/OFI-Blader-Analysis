@@ -88,7 +88,7 @@ def Init_Arduino(self):
     self.DAQ_Diode=self.threadDAQ.DAQ_Data
     self.data_Diode_plot=self.DAQ_Diode.copy()
     # Creation of the arrays to use in the graphs
-    self.Volx= np.array(list(range(self.number_of_samples)))*((self.number_of_samples)/(self.LaserFrequency))
+    self.Volx= np.array(list(range(self.number_of_samples)))*(1/(self.LaserFrequency))
     self.Voly = np.zeros(self.number_of_samples)
 
     self.dataFFTX=np.zeros(self.number_of_samples)
