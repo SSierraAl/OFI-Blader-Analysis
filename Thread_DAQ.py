@@ -6,9 +6,8 @@ from PyQt6.QtCore import QTimer
 
 import numpy as np
 
-from nidaqmx.stream_readers import AnalogSingleChannelReader,AnalogMultiChannelReader
+from nidaqmx.stream_readers import AnalogMultiChannelReader
 import nidaqmx as ni
-import nidaqmx.system
 from nidaqmx import constants
 
 ############################################################################################################################
@@ -26,8 +25,8 @@ class WorkerDAQ(QObject):
         # Definition of all variables needed to take the data and do the coms with NI DAQ
         self.Laser_frequency=Laser_frequency
         self.Number_to_mean=int(Number_to_mean)
-        self.DAQ_Device=DAQ_Device  #"Dev1/ai7"
-        self.DAQ_Device2=DAQ_Device2  #"Dev1/ai2"
+        self.DAQ_Device=DAQ_Device  #"Dev1/ai0"
+        self.DAQ_Device2=DAQ_Device2  #"Dev1/ai1"
         self.number_of_samples=int(number_of_samples)
         # Variables to store the most important info
         self.DAQ_X_Axis = list(range(self.number_of_samples))
@@ -36,11 +35,14 @@ class WorkerDAQ(QObject):
         self.data=np.zeros((2,int(self.number_of_samples)),dtype=np.float64)
         # Number of files
         self.fileSave=fileSave
-        self.running = True
         
-    @Slot()
-    def run(self):
-        with nidaqmx.Task() as task_Laser:
+    # Function of adquisition
+    
+    @Slot(int)
+    def RequestDAQData(self):
+        j=1
+        #Question to know if we have information to transfert
+        with ni.Task() as task_Laser:
             #Signal Adquisition ########################################################
             #Add Sensor
             task_Laser.ai_channels.add_ai_voltage_chan(self.DAQ_Device,max_val=5, min_val=-5)
@@ -50,18 +52,15 @@ class WorkerDAQ(QObject):
             task_Laser.timing.cfg_samp_clk_timing(rate=self.Laser_frequency, sample_mode=constants.AcquisitionType.CONTINUOUS)
             #Initialize Stream reader
             reader = AnalogMultiChannelReader(task_Laser.in_stream,)
-            
-            while self.running:
-                try:
-                    reader.read_many_sample(self.data, number_of_samples_per_channel=self.number_of_samples,timeout=10.0)         
-                    self.completeddaq.emit(self.data)  # Emitting data read from DAQ
-                    self.DAQ_Data=self.data[0,:]
-                    self.DAQ_Diode=self.data[1,:]
-                except:
-                    pass
-
-    def stop(self):
-        self.running = False 
+            # Acquire and store in read_array = self.data
+            reader.read_many_sample(self.data, number_of_samples_per_channel=self.number_of_samples,timeout=10.0)         
+             
+        self.DAQ_X_Axis = list(range(self.number_of_samples))
+        # Division of the data in two arrays of different channels
+        self.DAQ_Data=self.data[0,:]
+        self.DAQ_Diode=self.data[1,:]
+        # Emit the complete signal
+        self.completeddaq.emit(j)
 
 # creation of the Class DAQData, an object linked to the worker and the master class of the thread
         
@@ -85,40 +84,40 @@ class DAQData(QObject):
         self.DAQ_X_Axis= list(range(int(self.number_of_samples)))
         self.DAQ_Data = np.zeros(int(self.number_of_samples), dtype=np.float64)
         self.DAQ_Diode = np.zeros(int(self.number_of_samples), dtype=np.float64)
+
+        # Creation of timer to do always the same process, with a delay of 50ms each one
+        self.timerDAQ=QTimer()
+        self.timerDAQ.timeout.connect(self.startdaq)
+        self.timerDAQ.start(300)
             
         # Creation of the worker linked to this class
         self.workerDAQ = WorkerDAQ(self.Laser_frequency,self.Number_to_mean,self.DAQ_Device,self.number_of_samples,self.fileSave,self.DAQ_Device2)
         # Creation of the thread
-        self.worker_threadDAQ = QThread() 
-        # Copy all the worker to a thread
-        self.workerDAQ.moveToThread(self.worker_threadDAQ)      
+        self.worker_threadDAQ = QThread()       
         # Connect the worker with our function complete once finish process
         self.workerDAQ.completeddaq.connect(self.completedaq)
         # Connect the signal with the signal in the worker
-        self.worker_threadDAQ.started.connect(self.workerDAQ.run)
+        self.workDAQ_requested.connect(self.workerDAQ.RequestDAQData)
+        # Copy all the worker to a thread
+        self.workerDAQ.moveToThread(self.worker_threadDAQ)
+        # start the thread
         self.worker_threadDAQ.start()
-
-
-
+    
+    #Function to start the thread    
+    def startdaq(self):
+        n=5
+        self.workDAQ_requested.emit(n)
     # Function to copy the data when it's done   
     def completedaq(self):
+        
         self.DAQ_Data=(self.workerDAQ.DAQ_Data)
         self.DAQ_Diode=(self.workerDAQ.DAQ_Diode)
     
     #Function to delete the thread.
     def delete(self):
-
-
-        try:
-            self.workerDAQ.stop()
-            self.worker_threadDAQ.quit()
-            self.worker_threadDAQ.wait()
-            # Reset the DAQ Device
-            system = nidaqmx.system.System.local()
-            for device in system.devices:
-                #if device.name == self.DAQ_Device:
-                device.reset_device()
-                print(f"Device {self.DAQ_Device} has been reset.")
-        except:
-            print("DAQ is still on")
-
+        
+        self.timerDAQ.stop()
+        self.worker_threadDAQ.quit()  # Detener el hilo
+        self.worker_threadDAQ.wait()  # Esperar a que el hilo finalice
+        self.worker_threadDAQ.deleteLater()
+        self.deleteLater()

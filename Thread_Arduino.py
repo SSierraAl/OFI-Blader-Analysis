@@ -34,6 +34,8 @@ class WorkerArduino(QObject):
         # Open the serial port to coms
         self.ArduinoComs=serial.Serial(self.channel,self.bauds)
     
+    # Function of adquisition
+    
     @Slot(int)
     def data_adq(self):
         # Transform de value of intensity like string to send on the serial port
@@ -91,7 +93,7 @@ class ArduinoData(QObject):
         
         n=5
         self.workerArduino.intensity=(self.intensity)
-        #self.workArduino_requested.emit(n)
+        self.workArduino_requested.emit(n)
     
     # Function to copy the data when it's done 
     def complete(self):
@@ -105,4 +107,5 @@ class ArduinoData(QObject):
         self.timerArduino.stop()
         self.worker_thread.quit()  # Detener el hilo
         self.worker_thread.wait()  # Esperar a que el hilo finalice
-
+        self.worker_thread.deleteLater()
+        self.deleteLater()

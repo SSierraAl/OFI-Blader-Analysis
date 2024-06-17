@@ -1,4 +1,4 @@
-GlobalGUI/DataEXP/
-GlobalGUI/build/
-GlobalGUI/build.zip
-khkh
+__pycache__/
+.vscode/
+.git/
+.pyc

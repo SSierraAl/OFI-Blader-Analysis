@@ -30,31 +30,19 @@ def init_ports(self):
         self.DAQ_Device = (self.ui.load_pages.textEdit_DAQ_Device.toPlainText())
         self.channel=(self.ui.load_pages.comboBox_3.currentText())
         self.DAQ_Device2=(self.ui.load_pages.textEdit_DAQ_Device_2.toPlainText())
-
-        # Put the info of the GUI in our variables
-        self.intensity=(self.ui.load_pages.intensity_spin_box.value())
-        self.number_of_samples = int(self.ui.load_pages.textEdit.toPlainText())
-        self.LaserFrequency = float(self.ui.load_pages.textEdit_SampleFrequency.toPlainText())
-        self.Number_to_mean = float(self.ui.load_pages.textEdit_mean.toPlainText())
-        self.lowFrequency = float(self.ui.load_pages.textEdit_lowfreq.toPlainText())
-        self.highFrequency = float(self.ui.load_pages.textEdit_highfreq.toPlainText())
-        self.directory = self.ui.load_pages.textEdit_numberSamples_3.toPlainText()
-        self.nameFile = self.ui.load_pages.textEdit_numberSamples_2.toPlainText()
-        self.Format = self.ui.load_pages.comboBox.currentText()
-        self.fileSave= int(self.ui.load_pages.textEdit_Bauds.toPlainText())
-        # Rezise the arrays
-        # Rezise the arrays
-        self.vectors = [np.zeros(int(self.number_of_samples)) for _ in range(int(self.Number_to_mean))]
-        self.vectors2 = [np.zeros(int(self.number_of_samples)) for _ in range(int(self.fileSave))]
-        self.vectorsDiode = [np.zeros(int(self.number_of_samples)) for _ in range(self.fileSave)]
-        # New window to the Possible PSD
-
         Init_Arduino(self)
+        #This part helps to dont crash the programm and keep running
+        #try:
+        #    Init_Arduino(self)
+        #Just give error message in the GUI
+        #except:
+        #    self.ui.load_pages.label_14.setText("Please check your port selection")
     #Connect the button "Confirm ports" to this function
     self.ui.load_pages.portsButton.clicked.connect(Take_info_ports)
     
 #__Init__ of all the variables
 def Init_Arduino(self):
+
     #Cration of thread to catch the data of arduino with 1 as intensity and the channel "comX"
     self.threadArduino=ta.ArduinoData(1,self.channel)
     #Plug the data catch on the thread to this variable
@@ -64,7 +52,7 @@ def Init_Arduino(self):
     
     ############### Arduino Parameters ######################
 
-    self.CounterRMS=0
+    
     #Bauds of the serial communication between Arduino and PC
     self.bauds=115200
     #Intensity of the led in the AS7341
@@ -73,23 +61,43 @@ def Init_Arduino(self):
     self.size_colors=8
     ######## WEIGHT ANALYSIS#######
     
+    ############## Laser Parameters ########################
+    
+    #Number of samples to cath 
+    self.number_of_samples=4096
+    #Frequency of adquisition (in this case the laser)
+    self.Laser_frequency=1000000
+    #Number to mean the fft
+    self.Number_to_mean=3
+    #Low frequency of the filter
+    self.lowFreq=100
+    #High frequency of the filter
+    self.highFreq=8000
+    #Number of files to save
+    self.fileSave=100
+    # Array to catch the FFT data
+    self.vectors = [np.zeros(int(self.number_of_samples/2)) for _ in range(self.Number_to_mean)]
+    # Array to catch the data of the Photo Diode
+    self.vectorsDiode = [np.zeros(int(self.number_of_samples)) for _ in range(self.fileSave)]
+    # Counters of the arrays
+    self.CounterRMS = 0
+    self.CounterRMS2 = 0
+    # Array to save all the data to write, DAQ data adquisition
+    self.vectors2 = [np.zeros(self.number_of_samples) for _ in range(self.fileSave)]
     # Array to save all the data to write, Arduino data adquisition
     self.vectors3 = [np.zeros(self.data_Arduino) for _ in range(self.fileSave)]
     # Array to save all the data to write, Arduino weight adquisition
     # Only to have the size to later calcul the average of FFT
     self.FreqData=np.sqrt(np.mean(np.square(self.vectors), axis=0))
     # Creation of the thread of the DAQ, here we send the two ports to catch all the data
-    self.threadDAQ = td.DAQData(self.Number_to_mean, self.LaserFrequency, self.number_of_samples, self.DAQ_Device, self.lowFrequency, self.highFrequency,self.fileSave,self.DAQ_Device2)
+    self.threadDAQ = td.DAQData(self.Number_to_mean, self.Laser_frequency, self.number_of_samples, self.DAQ_Device, self.lowFreq, self.highFreq,self.fileSave,self.DAQ_Device2)
     # Link the variables here to the thread variables
     self.DAQ_Data=self.threadDAQ.DAQ_Data
     self.DAQ_Diode=self.threadDAQ.DAQ_Data
     self.data_Diode_plot=self.DAQ_Diode.copy()
     # Creation of the arrays to use in the graphs
-    self.Volx= np.array(list(range(self.number_of_samples)))*((self.number_of_samples)/(self.LaserFrequency))
-    self.Voly = np.zeros(self.number_of_samples)
-
-    self.dataFFTX=np.zeros(self.number_of_samples)
-    self.dataFFTY=np.zeros(self.number_of_samples)
+    self.Volx= np.array(list(range(self.number_of_samples)))*((self.number_of_samples)/(self.Laser_frequency))
+    self.Voly = [randint(0,100) for _ in range(self.number_of_samples)]
     # Flag of inserts to don't insert more than once
     self.inserts=0
     #Go to next function
@@ -101,8 +109,8 @@ def Init_Arduino(self):
     def Take_Info():
         #Delete the graphs that we have to change the size
         deleteGraphs(self)
+        # Put the info of the GUI in our variables
 
-    
     #####################  New function to save all the data, from the click to x time ##################################
     def vector_stock():
         #print("llenando")
@@ -135,12 +143,13 @@ def Init_Arduino(self):
  
     ##################### Function to save data ##############################
     def Save_data_2(self):
+        #print("escribiendo.........")
         # Copy the data to have every time the data of the moment
         data_to_save=(self.vectors2.copy())
         #data_to_save_Arduino=self.vectors3.copy()
         data_to_save_Diode=self.vectorsDiode.copy()
         # Calculate time axis
-        dataX=np.array(self.Volx)*1000/(self.LaserFrequency)
+        dataX=np.array(self.Volx)*1000/(self.Laser_frequency)
         #weightanalysis
         # Format TXT
         
@@ -195,7 +204,68 @@ def Init_Arduino(self):
         self.timerFFT.start()
         self.timerDQ.start()
         self.timerSave.stop()
-
+    
+    def Save_data():
+        # Stop the other process to don't lose information while we save
+        self.timerPLOT.stop()
+        self.timerFFT.stop()
+        # Copy the data to have every time the data of the moment
+        data_to_save=(self.vectors2.copy())
+        data_to_save_Arduino=self.vectors3.copy()
+        data_to_save_Diode=self.vectorsDiode.copy()
+        # Calculate time axis
+        dataX=np.array(self.Volx)*1000/(self.Laser_frequency)
+        
+        
+        # Format TXT
+        if(self.Format == ".txt"):
+            
+            for j in range (int(self.fileSave)):
+                # Open different file to save the same position of the array
+                with open(str(self.directory+self.nameFile+str(j)+self.Format), "w") as file:
+                    for i in range (int(self.number_of_samples)):
+                        # Copy the data arduino every time it change the file to have the live data
+                        data_to_save_Arduino=self.data_Arduino.copy()
+                        
+                        # Write the file with the format time, laser data, diode data, arduino data
+                        file.write(str(dataX[i])+" "+str(data_to_save[j][i])+"  "+str(data_to_save_Diode[j][i]) +" "+ str(data_to_save_Arduino) +'\n')
+        
+        # Format CSV            
+        elif(self.Format == ".csv"):
+            for j in range (int(self.fileSave)):
+                #Save the data like a list
+                datos1=list(dataX)
+                datos2=list(data_to_save[j])
+                datos3=list(data_to_save_Diode[j])
+                data_to_save_Arduino=self.data_Arduino.copy()
+                
+                #put the list vertical side to side and add the arduino data at right
+                datos=[list(pair)+data_to_save_Arduino for pair in zip(datos1, datos2,datos3)]
+                # Open different file to save the same position of the list
+                with open(str(self.directory+self.nameFile+str(j)+self.Format), "w") as file:
+                    # creation of the writer of csv of the file
+                    writer = csv.writer(file)
+                    for fila in datos:
+                        # Write every row of the final data to save
+                        writer.writerow(fila)
+         
+        # Format MAT    
+        else:
+            for j in range (int(self.fileSave)):
+                data_to_save_Arduino=self.data_Arduino.copy()
+                #Save the data like a list
+                datos1 = list(dataX)
+                datos2 = list(data_to_save[j])
+                datos3=list(data_to_save_Diode[j])
+                #put the list vertical side to side and add the arduino data at right
+                datos=[list(pair)+data_to_save_Arduino for pair in zip(datos1, datos2, datos3)]
+                #put the name of the file as name of the matrix in matlab
+                data_dict = {self.nameFile+str(j): datos}
+                # Write the file
+                scipy.io.savemat(str(self.directory+self.nameFile+str(j)+self.Format), data_dict, format="5", appendmat=False)
+        # relaunch of the FFT and plot process
+        self.timerPLOT.start()
+        self.timerFFT.start()
     
     ############################################## Reference#####################################################
     def Put_reference():
@@ -310,9 +380,9 @@ def insert_Arduino_graph2(self):
     # Put the y axis in Loagarithmic mode
     self.freqGraph.setLogMode(y=True)
     # Creation of the x axis 
-    self.Freqx = list(range(self.number_of_samples))  
+    self.Freqx = list(range(2000))  
     # Creation of the y axis 
-    self.Freqy = np.zeros(self.number_of_samples)  
+    self.Freqy = [randint(0,100) for _ in range(2000)]  
     # Set the color of the background
     self.freqGraph.setBackground('w')
     # Set the color of the line (Red)
@@ -358,23 +428,19 @@ def insert_Arduino_graph2(self):
         # link the data of the first channel adquisition with the variable
         self.DAQ_Data=self.threadDAQ.DAQ_Data
         # Calculate an high pass filter
-        self.data_DAQ2=butter_highpass_filter(self.DAQ_Data, self.lowFrequency, self.LaserFrequency, 3, "high")
+        self.data_DAQ2=butter_highpass_filter(self.DAQ_Data, self.lowFreq, self.Laser_frequency, 3, "high")
         # Calculate a low pass frequency, == pass-band filter
-        self.data_DAQ2=butter_highpass_filter(self.data_DAQ2, self.highFrequency, self.LaserFrequency, 3, "low")
+        self.data_DAQ2=butter_highpass_filter(self.data_DAQ2, self.highFreq, self.Laser_frequency, 3, "low")
         
-        fft_result = np.fft.rfft(self.DAQ_Data)
-        self.dataFFTX = np.fft.rfftfreq(self.number_of_samples, 1 / self.LaserFrequency)
-        self.dataFFTY = np.abs(fft_result)
-
         # FFT of the data Y axis
-        #yf = rfft(self.DAQ_Data)
+        yf = rfft(self.DAQ_Data)
         # FFT of the data X axis
-        #xf = rfftfreq(int(self.number_of_samples), 1 / self.LaserFrequency)
+        xf = rfftfreq(int(self.number_of_samples), 1 / self.Laser_frequency)
         # Absolute value of the FFT
-        #yf=np.abs(yf)
+        yf=np.abs(yf)
         # Cut the FFT to the firsts values
-        #self.dataFFTX=xf#[:2000]
-        #self.dataFFTY=yf#[:2000]
+        self.dataFFTX=xf[:2000]
+        self.dataFFTY=yf[:2000]
         # Save this data
         self.vectors[self.CounterRMS] = self.dataFFTY
         self.CounterRMS=self.CounterRMS+1
@@ -389,6 +455,27 @@ def insert_Arduino_graph2(self):
         self.timerPLOT.start()
     
     #########################################################################################################################################
+     
+    # Update the arrays to save files    
+    #def update_daq_vector(): 
+        # When the size of the array is the size we want
+     #   if(len(self.vectors2) == int(self.fileSave)):
+            # Delete the first value
+      #      self.vectors2.pop(0)
+       #     self.vectors3.pop(0)
+        #    self.vectorsDiode.pop(0)
+         #   self.data_Diode_plot=np.roll(self.data_Diode_plot,-1)
+        # Copy the values in that moment, to don't have always the same value  
+    #    aux_DAQ=self.threadDAQ.DAQ_Data.copy()
+     #   aux_color=self.data_Arduino.copy()
+      #  aux_Diode=self.threadDAQ.DAQ_Diode.copy()
+        
+        # Put the new value in the last space
+     #   self.vectors2.append(aux_DAQ)
+      #  self.vectors3.append(aux_color)
+       # self.vectorsDiode.append(aux_Diode)
+        #aux_diode_plot=np.array(aux_Diode).mean()
+        #self.data_Diode_plot[-1]=(float(aux_diode_plot))
        
     def update_daq_vector():
         self.data_Diode_plot=np.roll(self.data_Diode_plot,-1)
@@ -440,7 +527,7 @@ def insert_Arduino_graph2(self):
         # Put the data in our variable
         self.DAQ_X_Axis=self.threadDAQ.DAQ_X_Axis
         # calculate the time
-        self.DAQ_X_Axis=np.array(self.DAQ_X_Axis)*1000/(self.LaserFrequency)
+        self.DAQ_X_Axis=np.array(self.DAQ_X_Axis)*1000/(self.Laser_frequency)
         # Put the data in our variable
         self.DAQ_Data=self.threadDAQ.DAQ_Data
         # Cut the data just to see the variation of FFT os speed
@@ -450,9 +537,10 @@ def insert_Arduino_graph2(self):
         
         # Update the voltage data
         self.DAQ_Diode=self.threadDAQ.DAQ_Diode
+        
         # Update lines of the graphs
         self.data_line_Vol.setData(self.DAQ_X_Axis, self.DAQ_Data)
-        #self.data_line_Freq.setData(self.FreqX, self.FreqY) 
+        self.data_line_Freq.setData(self.FreqX, self.FreqY) 
         self.data_line_Vol_Diode.setData(self.DAQ_X_Axis,np.array(self.data_Diode_plot))
             
     # Creation of timer to calculate FFT
@@ -479,15 +567,8 @@ def insert_Arduino_graph2(self):
 def deleteGraphs(self):
     # Stop the plotting
     self.timerPLOT.stop()
-    self.timerPLOT.stop()
-    self.timerFFT.stop()
-    self.timerDQ.stop()
-    self.timerSave.stop()
     # delete the thread
     self.threadDAQ.delete()
-    print("pasamooooss")
-    self.threadArduino.delete()
-    print('pasamos x 2')
     #Remove the graphs to create new-ones
     self.ui.load_pages.LayoutLaser.removeWidget(self.voltageGraph)
     self.ui.load_pages.LayoutLaser.removeWidget(self.freqGraph)

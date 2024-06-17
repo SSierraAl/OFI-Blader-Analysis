@@ -58,17 +58,72 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
         self.hide_grips = True # Show/Hide resize grips
         SetupMainWindow.setup_gui(self)
+
+
+        # ZABER CONECTION
+        # ///////////////////////////////////////////////////////////////
+        #try:
+         #   print('------- Init Zaber -------')
+          #  InitializeZaber(self)
+        #except:
+         #   print('------- Error Zaber Connection -------')
+          #  self.ui.load_pages.n_devices_p3.setText("0 Devices")
+
+
+        # DAQ CONECTION
+        # ///////////////////////////////////////////////////////////////
+        #SetDAQParams(self)
+        #InsertLaserGraphs2(self)
+        #insert_Laser_graph(self)
+        #InitializeDaq(self)
+        
+        #self.colores=pl.GraphTest()
+        #self.colores.number=100
+        
+        #self.ui.load_pages.LayoutLaser.addWidget(self.colores)
+
+
+        # FlLUIGENT CONECTION
+        # ///////////////////////////////////////////////////////////////
+        #try:
+         #   InitFluigent_Sensor(self)
+          #  print("------- Init Fluigent -------")
+        #except:
+         #   print("------- Error Fluigent Connection -------")
+
+
+        # global bandera
+        # global extProc
+        # bandera=True
+        # def Zkeyboard():
+        #     global bandera
+        #     global extProc
+            
+        #     if bandera:
+        #         extProc = sp.Popen(['python','ZaberKeyboard.py']) # runs myPyScript.py 
+        #         status = sp.Popen.poll(extProc) # status should be 'None'
+        #         print(status)
+        #         bandera=False
+        #     else:
+        #         sp.Popen.terminate(extProc) # closes the process
+        #         status = sp.Popen.poll(extProc) 
+        #         print(status)
+        #         bandera=True
+
+        # self.ui.load_pages.Keyboard_p3.clicked.connect(Zkeyboard)
+        
+        
+        #self.data_Arduino=fs.data_arduino(self)        
         
         # ///////////////////////////////////////////////////////////////
         self.contasas=1
         self.cont_weight=1
 
-        MainFunctions.set_page(self, self.ui.load_pages.page)
-        init_ports(self)
-
         # SHOW MAIN WINDOW
         # ///////////////////////////////////////////////////////////////
         self.show()
+
+        #print("delete that")
 
     # LEFT MENU BTN IS CLICKED
     # Run function when btn is clicked
@@ -82,21 +137,32 @@ class MainWindow(QMainWindow):
         if btn.objectName() != "btn_settings":
             self.ui.left_menu.deselect_all_tab()
 
+
         # LEFT MENU
         # ///////////////////////////////////////////////////////////////
-
+        
         # HOME BTN
         if btn.objectName() == "btn_home":
             # Select Menu0 
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.Maintenance)
-
+            #self.timerArduino.stop()
+            #self.timerDAQ.stop()
+            #self.timerPLOT.start()
+            #self.timerWait.stop()
+            #self.timer.start()
+            #self.timerDaq.stop()
+            #self.timer2Daq.stop()
+        
         # Widget colors
         if btn.objectName() == "btn_colors":
             # Select Menu
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.page)
-
+            if(self.contasas == 1):
+                
+                init_ports(self)
+                self.contasas=0
 
 
         # Widget weight
@@ -115,8 +181,14 @@ class MainWindow(QMainWindow):
             # Select Menu
             self.ui.left_menu.select_only_one(btn.objectName())
             MainFunctions.set_page(self, self.ui.load_pages.Maintenance)
+            #self.timerArduino.stop()
+            #self.timerDAQ.stop()
             self.timerPLOT.stop()
-
+            #self.timerWait.stop()
+            #self.timer.stop()
+            #self.timer2.stop()
+            #self.timerDaq.start()
+            #self.timer2Daq.start()
 
 
     # LEFT MENU BTN IS RELEASED
@@ -126,6 +198,9 @@ class MainWindow(QMainWindow):
     def btn_released(self):
         # GET BT CLICKED
         btn = SetupMainWindow.setup_btns(self)
+
+        # DEBUG
+        #print(f"Button {btn.objectName()}, released!")
 
     # RESIZE EVENT
     # ///////////////////////////////////////////////////////////////

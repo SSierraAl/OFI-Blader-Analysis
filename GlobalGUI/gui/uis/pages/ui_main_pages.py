@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_pagesXtDFID.ui'
+## Form generated from reading UI file 'main_pagesqdenQC.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -116,7 +116,7 @@ class Ui_MainPages(object):
         self.scroll_area.setWidgetResizable(True)
         self.contents = QWidget()
         self.contents.setObjectName(u"contents")
-        self.contents.setGeometry(QRect(0, 0, 215, 266))
+        self.contents.setGeometry(QRect(0, 0, 1109, 790))
         self.contents.setStyleSheet(u"background: transparent;")
         self.verticalLayout = QVBoxLayout(self.contents)
         self.verticalLayout.setSpacing(15)
@@ -890,119 +890,49 @@ class Ui_MainPages(object):
         self.Parameters.setMaximumSize(QSize(926, 370))
         self.gridLayout = QGridLayout(self.Parameters)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.widget_outputFormat_2 = QWidget(self.Parameters)
-        self.widget_outputFormat_2.setObjectName(u"widget_outputFormat_2")
-        self.verticalLayout_21 = QVBoxLayout(self.widget_outputFormat_2)
-        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
-        self.label_format_2 = QLabel(self.widget_outputFormat_2)
-        self.label_format_2.setObjectName(u"label_format_2")
+        self.widget_directoryFile = QWidget(self.Parameters)
+        self.widget_directoryFile.setObjectName(u"widget_directoryFile")
+        self.verticalLayout_19 = QVBoxLayout(self.widget_directoryFile)
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.label_directory = QLabel(self.widget_directoryFile)
+        self.label_directory.setObjectName(u"label_directory")
 
-        self.verticalLayout_21.addWidget(self.label_format_2)
+        self.verticalLayout_19.addWidget(self.label_directory)
 
-        self.textEdit_DAQ_Device = QTextEdit(self.widget_outputFormat_2)
-        self.textEdit_DAQ_Device.setObjectName(u"textEdit_DAQ_Device")
+        self.textEdit_numberSamples_3 = QTextEdit(self.widget_directoryFile)
+        self.textEdit_numberSamples_3.setObjectName(u"textEdit_numberSamples_3")
 
-        self.verticalLayout_21.addWidget(self.textEdit_DAQ_Device)
-
-
-        self.gridLayout.addWidget(self.widget_outputFormat_2, 2, 1, 1, 1)
-
-        self.widget_numberSamples = QWidget(self.Parameters)
-        self.widget_numberSamples.setObjectName(u"widget_numberSamples")
-        self.verticalLayout_15 = QVBoxLayout(self.widget_numberSamples)
-        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
-        self.label_samples = QLabel(self.widget_numberSamples)
-        self.label_samples.setObjectName(u"label_samples")
-
-        self.verticalLayout_15.addWidget(self.label_samples)
-
-        self.textEdit = QTextEdit(self.widget_numberSamples)
-        self.textEdit.setObjectName(u"textEdit")
-
-        self.verticalLayout_15.addWidget(self.textEdit)
+        self.verticalLayout_19.addWidget(self.textEdit_numberSamples_3)
 
 
-        self.gridLayout.addWidget(self.widget_numberSamples, 4, 2, 1, 1)
+        self.gridLayout.addWidget(self.widget_directoryFile, 7, 1, 1, 1)
 
-        self.widget_SampleFrequency = QWidget(self.Parameters)
-        self.widget_SampleFrequency.setObjectName(u"widget_SampleFrequency")
-        self.verticalLayout_13 = QVBoxLayout(self.widget_SampleFrequency)
-        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
-        self.label_freq = QLabel(self.widget_SampleFrequency)
-        self.label_freq.setObjectName(u"label_freq")
+        self.portsButton = QPushButton(self.Parameters)
+        self.portsButton.setObjectName(u"portsButton")
+        self.portsButton.setMaximumSize(QSize(200, 25))
 
-        self.verticalLayout_13.addWidget(self.label_freq)
+        self.gridLayout.addWidget(self.portsButton, 3, 4, 1, 1)
 
-        self.textEdit_SampleFrequency = QTextEdit(self.widget_SampleFrequency)
-        self.textEdit_SampleFrequency.setObjectName(u"textEdit_SampleFrequency")
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_13.addWidget(self.textEdit_SampleFrequency)
+        self.gridLayout.addItem(self.verticalSpacer_6, 8, 2, 1, 1)
 
+        self.widget_outputFormat_5 = QWidget(self.Parameters)
+        self.widget_outputFormat_5.setObjectName(u"widget_outputFormat_5")
+        self.verticalLayout_24 = QVBoxLayout(self.widget_outputFormat_5)
+        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
+        self.label_format_4 = QLabel(self.widget_outputFormat_5)
+        self.label_format_4.setObjectName(u"label_format_4")
 
-        self.gridLayout.addWidget(self.widget_SampleFrequency, 4, 1, 1, 1)
+        self.verticalLayout_24.addWidget(self.label_format_4)
 
-        self.widget_outputFormat_3 = QWidget(self.Parameters)
-        self.widget_outputFormat_3.setObjectName(u"widget_outputFormat_3")
-        self.verticalLayout_22 = QVBoxLayout(self.widget_outputFormat_3)
-        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
-        self.label_Port_Arduino = QLabel(self.widget_outputFormat_3)
-        self.label_Port_Arduino.setObjectName(u"label_Port_Arduino")
+        self.textEdit_DAQ_Device_2 = QTextEdit(self.widget_outputFormat_5)
+        self.textEdit_DAQ_Device_2.setObjectName(u"textEdit_DAQ_Device_2")
 
-        self.verticalLayout_22.addWidget(self.label_Port_Arduino)
-
-        self.comboBox_3 = QComboBox(self.widget_outputFormat_3)
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.addItem("")
-        self.comboBox_3.setObjectName(u"comboBox_3")
-
-        self.verticalLayout_22.addWidget(self.comboBox_3)
+        self.verticalLayout_24.addWidget(self.textEdit_DAQ_Device_2)
 
 
-        self.gridLayout.addWidget(self.widget_outputFormat_3, 2, 2, 1, 1)
-
-        self.widget_lowfreq = QWidget(self.Parameters)
-        self.widget_lowfreq.setObjectName(u"widget_lowfreq")
-        self.verticalLayout_14 = QVBoxLayout(self.widget_lowfreq)
-        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
-        self.label_lowfreq = QLabel(self.widget_lowfreq)
-        self.label_lowfreq.setObjectName(u"label_lowfreq")
-
-        self.verticalLayout_14.addWidget(self.label_lowfreq)
-
-        self.textEdit_lowfreq = QTextEdit(self.widget_lowfreq)
-        self.textEdit_lowfreq.setObjectName(u"textEdit_lowfreq")
-
-        self.verticalLayout_14.addWidget(self.textEdit_lowfreq)
-
-
-        self.gridLayout.addWidget(self.widget_lowfreq, 5, 2, 1, 2)
-
-        self.widget_outputFormat = QWidget(self.Parameters)
-        self.widget_outputFormat.setObjectName(u"widget_outputFormat")
-        self.verticalLayout_17 = QVBoxLayout(self.widget_outputFormat)
-        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.label_format = QLabel(self.widget_outputFormat)
-        self.label_format.setObjectName(u"label_format")
-
-        self.verticalLayout_17.addWidget(self.label_format)
-
-        self.comboBox = QComboBox(self.widget_outputFormat)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
-
-        self.verticalLayout_17.addWidget(self.comboBox)
-
-
-        self.gridLayout.addWidget(self.widget_outputFormat, 6, 4, 1, 1)
+        self.gridLayout.addWidget(self.widget_outputFormat_5, 2, 4, 1, 1)
 
         self.widget_highfreq = QWidget(self.Parameters)
         self.widget_highfreq.setObjectName(u"widget_highfreq")
@@ -1038,6 +968,60 @@ class Ui_MainPages(object):
 
         self.gridLayout.addWidget(self.widget_namefile, 6, 2, 1, 2)
 
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_9, 5, 5, 1, 1)
+
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_11, 6, 5, 1, 1)
+
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_10, 4, 5, 1, 1)
+
+        self.widget_mean = QWidget(self.Parameters)
+        self.widget_mean.setObjectName(u"widget_mean")
+        self.verticalLayout_20 = QVBoxLayout(self.widget_mean)
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.label_mean = QLabel(self.widget_mean)
+        self.label_mean.setObjectName(u"label_mean")
+
+        self.verticalLayout_20.addWidget(self.label_mean)
+
+        self.textEdit_mean = QTextEdit(self.widget_mean)
+        self.textEdit_mean.setObjectName(u"textEdit_mean")
+
+        self.verticalLayout_20.addWidget(self.textEdit_mean)
+
+
+        self.gridLayout.addWidget(self.widget_mean, 5, 1, 1, 1)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_8, 5, 0, 1, 1)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout.addItem(self.verticalSpacer_5, 1, 1, 1, 1)
+
+        self.widget_lowfreq = QWidget(self.Parameters)
+        self.widget_lowfreq.setObjectName(u"widget_lowfreq")
+        self.verticalLayout_14 = QVBoxLayout(self.widget_lowfreq)
+        self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.label_lowfreq = QLabel(self.widget_lowfreq)
+        self.label_lowfreq.setObjectName(u"label_lowfreq")
+
+        self.verticalLayout_14.addWidget(self.label_lowfreq)
+
+        self.textEdit_lowfreq = QTextEdit(self.widget_lowfreq)
+        self.textEdit_lowfreq.setObjectName(u"textEdit_lowfreq")
+
+        self.verticalLayout_14.addWidget(self.textEdit_lowfreq)
+
+
+        self.gridLayout.addWidget(self.widget_lowfreq, 5, 2, 1, 2)
+
         self.widget_Luminosity = QWidget(self.Parameters)
         self.widget_Luminosity.setObjectName(u"widget_Luminosity")
         self.horizontalLayout_19 = QHBoxLayout(self.widget_Luminosity)
@@ -1057,87 +1041,110 @@ class Ui_MainPages(object):
 
         self.gridLayout.addWidget(self.widget_Luminosity, 4, 3, 1, 2)
 
-        self.widget_mean = QWidget(self.Parameters)
-        self.widget_mean.setObjectName(u"widget_mean")
-        self.verticalLayout_20 = QVBoxLayout(self.widget_mean)
-        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
-        self.label_mean = QLabel(self.widget_mean)
-        self.label_mean.setObjectName(u"label_mean")
+        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.verticalLayout_20.addWidget(self.label_mean)
+        self.gridLayout.addItem(self.horizontalSpacer_12, 4, 0, 1, 1)
 
-        self.textEdit_mean = QTextEdit(self.widget_mean)
-        self.textEdit_mean.setObjectName(u"textEdit_mean")
+        self.widget_SampleFrequency = QWidget(self.Parameters)
+        self.widget_SampleFrequency.setObjectName(u"widget_SampleFrequency")
+        self.verticalLayout_13 = QVBoxLayout(self.widget_SampleFrequency)
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.label_freq = QLabel(self.widget_SampleFrequency)
+        self.label_freq.setObjectName(u"label_freq")
 
-        self.verticalLayout_20.addWidget(self.textEdit_mean)
+        self.verticalLayout_13.addWidget(self.label_freq)
+
+        self.textEdit_SampleFrequency = QTextEdit(self.widget_SampleFrequency)
+        self.textEdit_SampleFrequency.setObjectName(u"textEdit_SampleFrequency")
+
+        self.verticalLayout_13.addWidget(self.textEdit_SampleFrequency)
 
 
-        self.gridLayout.addWidget(self.widget_mean, 5, 1, 1, 1)
+        self.gridLayout.addWidget(self.widget_SampleFrequency, 4, 1, 1, 1)
 
-        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.widget_outputFormat = QWidget(self.Parameters)
+        self.widget_outputFormat.setObjectName(u"widget_outputFormat")
+        self.verticalLayout_17 = QVBoxLayout(self.widget_outputFormat)
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.label_format = QLabel(self.widget_outputFormat)
+        self.label_format.setObjectName(u"label_format")
 
-        self.gridLayout.addItem(self.horizontalSpacer_13, 6, 0, 1, 1)
+        self.verticalLayout_17.addWidget(self.label_format)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.comboBox = QComboBox(self.widget_outputFormat)
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.setObjectName(u"comboBox")
 
-        self.gridLayout.addItem(self.verticalSpacer_3, 1, 2, 1, 1)
+        self.verticalLayout_17.addWidget(self.comboBox)
 
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout.addItem(self.horizontalSpacer_10, 4, 5, 1, 1)
-
-        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_11, 6, 5, 1, 1)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout.addItem(self.verticalSpacer_2, 8, 4, 1, 1)
+        self.gridLayout.addWidget(self.widget_outputFormat, 6, 4, 1, 1)
 
         self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.gridLayout.addItem(self.verticalSpacer_4, 8, 1, 1, 1)
 
-        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.widget_outputFormat_2 = QWidget(self.Parameters)
+        self.widget_outputFormat_2.setObjectName(u"widget_outputFormat_2")
+        self.verticalLayout_21 = QVBoxLayout(self.widget_outputFormat_2)
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.label_format_2 = QLabel(self.widget_outputFormat_2)
+        self.label_format_2.setObjectName(u"label_format_2")
 
-        self.gridLayout.addItem(self.verticalSpacer_7, 1, 4, 1, 1)
+        self.verticalLayout_21.addWidget(self.label_format_2)
 
-        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.textEdit_DAQ_Device = QTextEdit(self.widget_outputFormat_2)
+        self.textEdit_DAQ_Device.setObjectName(u"textEdit_DAQ_Device")
 
-        self.gridLayout.addItem(self.verticalSpacer_6, 8, 2, 1, 1)
-
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_9, 5, 5, 1, 1)
-
-        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_12, 4, 0, 1, 1)
-
-        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout.addItem(self.verticalSpacer_5, 1, 1, 1, 1)
-
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_8, 5, 0, 1, 1)
-
-        self.widget_directoryFile = QWidget(self.Parameters)
-        self.widget_directoryFile.setObjectName(u"widget_directoryFile")
-        self.verticalLayout_19 = QVBoxLayout(self.widget_directoryFile)
-        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
-        self.label_directory = QLabel(self.widget_directoryFile)
-        self.label_directory.setObjectName(u"label_directory")
-
-        self.verticalLayout_19.addWidget(self.label_directory)
-
-        self.textEdit_numberSamples_3 = QTextEdit(self.widget_directoryFile)
-        self.textEdit_numberSamples_3.setObjectName(u"textEdit_numberSamples_3")
-
-        self.verticalLayout_19.addWidget(self.textEdit_numberSamples_3)
+        self.verticalLayout_21.addWidget(self.textEdit_DAQ_Device)
 
 
-        self.gridLayout.addWidget(self.widget_directoryFile, 7, 1, 1, 1)
+        self.gridLayout.addWidget(self.widget_outputFormat_2, 2, 1, 1, 1)
+
+        self.widget_outputFormat_3 = QWidget(self.Parameters)
+        self.widget_outputFormat_3.setObjectName(u"widget_outputFormat_3")
+        self.verticalLayout_22 = QVBoxLayout(self.widget_outputFormat_3)
+        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
+        self.label_Port_Arduino = QLabel(self.widget_outputFormat_3)
+        self.label_Port_Arduino.setObjectName(u"label_Port_Arduino")
+
+        self.verticalLayout_22.addWidget(self.label_Port_Arduino)
+
+        self.comboBox_3 = QComboBox(self.widget_outputFormat_3)
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.addItem("")
+        self.comboBox_3.setObjectName(u"comboBox_3")
+
+        self.verticalLayout_22.addWidget(self.comboBox_3)
+
+
+        self.gridLayout.addWidget(self.widget_outputFormat_3, 2, 2, 1, 1)
+
+        self.widget_numberSamples = QWidget(self.Parameters)
+        self.widget_numberSamples.setObjectName(u"widget_numberSamples")
+        self.verticalLayout_15 = QVBoxLayout(self.widget_numberSamples)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.label_samples = QLabel(self.widget_numberSamples)
+        self.label_samples.setObjectName(u"label_samples")
+
+        self.verticalLayout_15.addWidget(self.label_samples)
+
+        self.textEdit = QTextEdit(self.widget_numberSamples)
+        self.textEdit.setObjectName(u"textEdit")
+
+        self.verticalLayout_15.addWidget(self.textEdit)
+
+
+        self.gridLayout.addWidget(self.widget_numberSamples, 4, 2, 1, 1)
 
         self.widget_outputFormat_4 = QWidget(self.Parameters)
         self.widget_outputFormat_4.setObjectName(u"widget_outputFormat_4")
@@ -1156,28 +1163,21 @@ class Ui_MainPages(object):
 
         self.gridLayout.addWidget(self.widget_outputFormat_4, 6, 1, 1, 1)
 
-        self.portsButton = QPushButton(self.Parameters)
-        self.portsButton.setObjectName(u"portsButton")
-        self.portsButton.setMaximumSize(QSize(200, 25))
+        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.gridLayout.addWidget(self.portsButton, 3, 4, 1, 1)
+        self.gridLayout.addItem(self.verticalSpacer_7, 1, 4, 1, 1)
 
-        self.widget_outputFormat_5 = QWidget(self.Parameters)
-        self.widget_outputFormat_5.setObjectName(u"widget_outputFormat_5")
-        self.verticalLayout_24 = QVBoxLayout(self.widget_outputFormat_5)
-        self.verticalLayout_24.setObjectName(u"verticalLayout_24")
-        self.label_format_4 = QLabel(self.widget_outputFormat_5)
-        self.label_format_4.setObjectName(u"label_format_4")
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.verticalLayout_24.addWidget(self.label_format_4)
+        self.gridLayout.addItem(self.horizontalSpacer_13, 6, 0, 1, 1)
 
-        self.textEdit_DAQ_Device_2 = QTextEdit(self.widget_outputFormat_5)
-        self.textEdit_DAQ_Device_2.setObjectName(u"textEdit_DAQ_Device_2")
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_24.addWidget(self.textEdit_DAQ_Device_2)
+        self.gridLayout.addItem(self.verticalSpacer_2, 8, 4, 1, 1)
 
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.gridLayout.addWidget(self.widget_outputFormat_5, 2, 4, 1, 1)
+        self.gridLayout.addItem(self.verticalSpacer_3, 1, 2, 1, 1)
 
 
         self.verticalLayout_12.addWidget(self.Parameters)
@@ -1572,7 +1572,7 @@ class Ui_MainPages(object):
 
         self.retranslateUi(MainPages)
 
-        self.pages.setCurrentIndex(4)
+        self.pages.setCurrentIndex(5)
 
 
         QMetaObject.connectSlotsByName(MainPages)
@@ -1652,9 +1652,9 @@ class Ui_MainPages(object):
 
         self.label_31.setText(QCoreApplication.translate("MainPages", u"<html><head/><body><p><span style=\" font-size:12pt;\">[g]</span></p></body></html>", None))
         self.label_30.setText(QCoreApplication.translate("MainPages", u"<html><head/><body><p><span style=\" font-size:12pt;\">[mL/s]</span></p></body></html>", None))
-        self.comboBox_weight_port.setItemText(0, QCoreApplication.translate("MainPages", u"COM1", None))
-        self.comboBox_weight_port.setItemText(1, QCoreApplication.translate("MainPages", u"COM2", None))
-        self.comboBox_weight_port.setItemText(2, QCoreApplication.translate("MainPages", u"COM3", None))
+        self.comboBox_weight_port.setItemText(0, QCoreApplication.translate("MainPages", u"COM3", None))
+        self.comboBox_weight_port.setItemText(1, QCoreApplication.translate("MainPages", u"COM1", None))
+        self.comboBox_weight_port.setItemText(2, QCoreApplication.translate("MainPages", u"COM2", None))
         self.comboBox_weight_port.setItemText(3, QCoreApplication.translate("MainPages", u"COM4", None))
         self.comboBox_weight_port.setItemText(4, QCoreApplication.translate("MainPages", u"COM5", None))
         self.comboBox_weight_port.setItemText(5, QCoreApplication.translate("MainPages", u"COM6", None))
@@ -1668,59 +1668,26 @@ class Ui_MainPages(object):
         self.but_confirm_weight.setText(QCoreApplication.translate("MainPages", u"Confirm", None))
         self.label_34.setText(QCoreApplication.translate("MainPages", u"File Directory", None))
         self.label_35.setText(QCoreApplication.translate("MainPages", u"File Name", None))
-        self.Page_Name.setText(QCoreApplication.translate("MainPages", u"Lasercito", None))
-        self.label_format_2.setText(QCoreApplication.translate("MainPages", u"Select device Laser", None))
-        self.textEdit_DAQ_Device.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.Page_Name.setText(QCoreApplication.translate("MainPages", u"<html><head/><body><p>Blader Analysis</p></body></html>", None))
+        self.label_directory.setText(QCoreApplication.translate("MainPages", u"Directory File", None))
+        self.textEdit_numberSamples_3.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">Dev1/ai0</span></p></body></html>", None))
-        self.label_samples.setText(QCoreApplication.translate("MainPages", u"Number of samples", None))
-        self.textEdit.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;\"><br /></p></body></html>", None))
+        self.portsButton.setText(QCoreApplication.translate("MainPages", u"Confirm Ports", None))
+        self.label_format_4.setText(QCoreApplication.translate("MainPages", u"Select device Photo Diode", None))
+        self.textEdit_DAQ_Device_2.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">4096</span></p></body></html>", None))
-        self.label_freq.setText(QCoreApplication.translate("MainPages", u"Sample Frequency:", None))
-        self.textEdit_SampleFrequency.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">500000</span></p></body></html>", None))
-        self.label_Port_Arduino.setText(QCoreApplication.translate("MainPages", u"Select Arduino Port", None))
-        self.comboBox_3.setItemText(0, QCoreApplication.translate("MainPages", u"com1", None))
-        self.comboBox_3.setItemText(1, QCoreApplication.translate("MainPages", u"com2", None))
-        self.comboBox_3.setItemText(2, QCoreApplication.translate("MainPages", u"com3", None))
-        self.comboBox_3.setItemText(3, QCoreApplication.translate("MainPages", u"com4", None))
-        self.comboBox_3.setItemText(4, QCoreApplication.translate("MainPages", u"com5", None))
-        self.comboBox_3.setItemText(5, QCoreApplication.translate("MainPages", u"com6", None))
-        self.comboBox_3.setItemText(6, QCoreApplication.translate("MainPages", u"com7", None))
-        self.comboBox_3.setItemText(7, QCoreApplication.translate("MainPages", u"com8", None))
-        self.comboBox_3.setItemText(8, QCoreApplication.translate("MainPages", u"com9", None))
-
-        self.label_lowfreq.setText(QCoreApplication.translate("MainPages", u"Low frequency filter", None))
-        self.textEdit_lowfreq.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">100</span></p></body></html>", None))
-        self.label_format.setText(QCoreApplication.translate("MainPages", u"Output Format", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainPages", u".mat", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainPages", u".txt", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainPages", u".csv", None))
-
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">Dev3/ai2</span></p></body></html>", None))
         self.label_highfreq.setText(QCoreApplication.translate("MainPages", u"High frequency filter", None))
         self.textEdit_highfreq.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
@@ -1739,7 +1706,6 @@ class Ui_MainPages(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">data_try</span></p></body></html>", None))
-        self.label_intensity.setText(QCoreApplication.translate("MainPages", u"luminosity", None))
         self.label_mean.setText(QCoreApplication.translate("MainPages", u"Number to mean", None))
         self.textEdit_mean.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
@@ -1749,15 +1715,59 @@ class Ui_MainPages(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">3</span></p></body></html>", None))
-        self.label_directory.setText(QCoreApplication.translate("MainPages", u"Directory File", None))
-        self.textEdit_numberSamples_3.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.label_lowfreq.setText(QCoreApplication.translate("MainPages", u"Low frequency filter", None))
+        self.textEdit_lowfreq.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;\"><br /></p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">100</span></p></body></html>", None))
+        self.label_intensity.setText(QCoreApplication.translate("MainPages", u"luminosity", None))
+        self.label_freq.setText(QCoreApplication.translate("MainPages", u"Sample Frequency:", None))
+        self.textEdit_SampleFrequency.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">1000000</span></p></body></html>", None))
+        self.label_format.setText(QCoreApplication.translate("MainPages", u"Output Format", None))
+        self.comboBox.setItemText(0, QCoreApplication.translate("MainPages", u".mat", None))
+        self.comboBox.setItemText(1, QCoreApplication.translate("MainPages", u".txt", None))
+        self.comboBox.setItemText(2, QCoreApplication.translate("MainPages", u".csv", None))
+
+        self.label_format_2.setText(QCoreApplication.translate("MainPages", u"Select device Laser", None))
+        self.textEdit_DAQ_Device.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">Dev3/ai7</span></p></body></html>", None))
+        self.label_Port_Arduino.setText(QCoreApplication.translate("MainPages", u"Select Arduino Port", None))
+        self.comboBox_3.setItemText(0, QCoreApplication.translate("MainPages", u"com4", None))
+        self.comboBox_3.setItemText(1, QCoreApplication.translate("MainPages", u"com1", None))
+        self.comboBox_3.setItemText(2, QCoreApplication.translate("MainPages", u"com2", None))
+        self.comboBox_3.setItemText(3, QCoreApplication.translate("MainPages", u"com3", None))
+        self.comboBox_3.setItemText(4, QCoreApplication.translate("MainPages", u"com5", None))
+        self.comboBox_3.setItemText(5, QCoreApplication.translate("MainPages", u"com6", None))
+        self.comboBox_3.setItemText(6, QCoreApplication.translate("MainPages", u"com7", None))
+        self.comboBox_3.setItemText(7, QCoreApplication.translate("MainPages", u"com8", None))
+        self.comboBox_3.setItemText(8, QCoreApplication.translate("MainPages", u"com9", None))
+
+        self.label_samples.setText(QCoreApplication.translate("MainPages", u"Number of samples", None))
+        self.textEdit.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">8192</span></p></body></html>", None))
         self.label_format_3.setText(QCoreApplication.translate("MainPages", u"Enter number of data to save", None))
         self.textEdit_Bauds.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
@@ -1767,16 +1777,6 @@ class Ui_MainPages(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">20</span></p></body></html>", None))
-        self.portsButton.setText(QCoreApplication.translate("MainPages", u"Confirm Ports", None))
-        self.label_format_4.setText(QCoreApplication.translate("MainPages", u"Select device Photo Diode", None))
-        self.textEdit_DAQ_Device_2.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">Dev1/ai1</span></p></body></html>", None))
         self.Ok_Button.setText(QCoreApplication.translate("MainPages", u"Confirm", None))
         self.Save_Data.setText(QCoreApplication.translate("MainPages", u"Save Data", None))
         self.label_14.setText(QCoreApplication.translate("MainPages", u"HGB ratio:", None))
