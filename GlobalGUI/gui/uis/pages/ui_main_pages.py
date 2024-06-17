@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_pagesqdenQC.ui'
+## Form generated from reading UI file 'main_pagesumtzbu.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -907,12 +907,6 @@ class Ui_MainPages(object):
 
         self.gridLayout.addWidget(self.widget_directoryFile, 7, 1, 1, 1)
 
-        self.portsButton = QPushButton(self.Parameters)
-        self.portsButton.setObjectName(u"portsButton")
-        self.portsButton.setMaximumSize(QSize(200, 25))
-
-        self.gridLayout.addWidget(self.portsButton, 3, 4, 1, 1)
-
         self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.gridLayout.addItem(self.verticalSpacer_6, 8, 2, 1, 1)
@@ -1179,6 +1173,18 @@ class Ui_MainPages(object):
 
         self.gridLayout.addItem(self.verticalSpacer_3, 1, 2, 1, 1)
 
+        self.portsButton = QPushButton(self.Parameters)
+        self.portsButton.setObjectName(u"portsButton")
+        self.portsButton.setMaximumSize(QSize(200, 25))
+
+        self.gridLayout.addWidget(self.portsButton, 7, 4, 1, 1)
+
+        self.Save_Data = QPushButton(self.Parameters)
+        self.Save_Data.setObjectName(u"Save_Data")
+        self.Save_Data.setMaximumSize(QSize(80, 25))
+
+        self.gridLayout.addWidget(self.Save_Data, 7, 2, 1, 1)
+
 
         self.verticalLayout_12.addWidget(self.Parameters)
 
@@ -1186,29 +1192,23 @@ class Ui_MainPages(object):
         self.widget_5.setObjectName(u"widget_5")
         self.gridLayout_4 = QGridLayout(self.widget_5)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.Ok_Button = QPushButton(self.widget_5)
-        self.Ok_Button.setObjectName(u"Ok_Button")
-        self.Ok_Button.setMaximumSize(QSize(100, 25))
+        self.horizontalSpacer_15 = QSpacerItem(198, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout_4.addWidget(self.Ok_Button, 0, 4, 1, 1)
+        self.gridLayout_4.addItem(self.horizontalSpacer_15, 3, 1, 2, 1)
+
+        self.horizontalSpacer_14 = QSpacerItem(197, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_4.addItem(self.horizontalSpacer_14, 3, 4, 2, 1)
 
         self.verticalSpacer_17 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.gridLayout_4.addItem(self.verticalSpacer_17, 0, 2, 1, 1)
 
-        self.horizontalSpacer_14 = QSpacerItem(197, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.Ok_Button = QPushButton(self.widget_5)
+        self.Ok_Button.setObjectName(u"Ok_Button")
+        self.Ok_Button.setMaximumSize(QSize(100, 25))
 
-        self.gridLayout_4.addItem(self.horizontalSpacer_14, 2, 4, 2, 1)
-
-        self.horizontalSpacer_15 = QSpacerItem(198, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout_4.addItem(self.horizontalSpacer_15, 2, 1, 2, 1)
-
-        self.Save_Data = QPushButton(self.widget_5)
-        self.Save_Data.setObjectName(u"Save_Data")
-        self.Save_Data.setMaximumSize(QSize(80, 25))
-
-        self.gridLayout_4.addWidget(self.Save_Data, 0, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.Ok_Button, 0, 4, 1, 1)
 
 
         self.verticalLayout_12.addWidget(self.widget_5)
@@ -1678,7 +1678,6 @@ class Ui_MainPages(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'MS Shell Dlg 2'; font-size:8.25pt;\"><br /></p></body></html>", None))
-        self.portsButton.setText(QCoreApplication.translate("MainPages", u"Confirm Ports", None))
         self.label_format_4.setText(QCoreApplication.translate("MainPages", u"Select device Photo Diode", None))
         self.textEdit_DAQ_Device_2.setHtml(QCoreApplication.translate("MainPages", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
@@ -1777,8 +1776,9 @@ class Ui_MainPages(object):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt;\">20</span></p></body></html>", None))
-        self.Ok_Button.setText(QCoreApplication.translate("MainPages", u"Confirm", None))
+        self.portsButton.setText(QCoreApplication.translate("MainPages", u"Start", None))
         self.Save_Data.setText(QCoreApplication.translate("MainPages", u"Save Data", None))
+        self.Ok_Button.setText(QCoreApplication.translate("MainPages", u"Stop", None))
         self.label_14.setText(QCoreApplication.translate("MainPages", u"HGB ratio:", None))
         self.pushButton_Reference.setText(QCoreApplication.translate("MainPages", u"Reference", None))
         self.pushButton_Clear.setText(QCoreApplication.translate("MainPages", u"Clear reference", None))

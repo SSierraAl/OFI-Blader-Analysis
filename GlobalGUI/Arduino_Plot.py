@@ -27,6 +27,10 @@ import plot
 def init_ports(self): 
     #Here we take the data of the GUI to change the ports
     def Take_info_ports(): 
+        try:
+            self.ui.load_pages.LayoutColor.removeWidget(self.colorGraph)
+        except:
+            pass
         self.DAQ_Device = (self.ui.load_pages.textEdit_DAQ_Device.toPlainText())
         self.channel=(self.ui.load_pages.comboBox_3.currentText())
         self.DAQ_Device2=(self.ui.load_pages.textEdit_DAQ_Device_2.toPlainText())
@@ -48,7 +52,6 @@ def init_ports(self):
         self.vectors2 = [np.zeros(int(self.number_of_samples)) for _ in range(int(self.fileSave))]
         self.vectorsDiode = [np.zeros(int(self.number_of_samples)) for _ in range(self.fileSave)]
         # New window to the Possible PSD
-
         Init_Arduino(self)
     #Connect the button "Confirm ports" to this function
     self.ui.load_pages.portsButton.clicked.connect(Take_info_ports)
@@ -140,7 +143,7 @@ def Init_Arduino(self):
         #data_to_save_Arduino=self.vectors3.copy()
         data_to_save_Diode=self.vectorsDiode.copy()
         # Calculate time axis
-        dataX=np.array(self.Volx)*1000/(self.LaserFrequency)
+        dataX=np.array(self.Volx)
         #weightanalysis
         # Format TXT
         
@@ -222,9 +225,7 @@ def Init_Arduino(self):
     self.ui.load_pages.Ok_Button.clicked.connect(Take_Info)
     #self.ui.load_pages.Save_Data.clicked.connect(Save_data)
     self.ui.load_pages.Save_Data.clicked.connect(Save_data_future)
-    
     self.ui.load_pages.pushButton_Reference.clicked.connect(Put_reference)
-    
     self.ui.load_pages.pushButton_Clear.clicked.connect(Clear_reference)
 
 #################################################################################################################################################
@@ -351,30 +352,31 @@ def insert_Arduino_graph2(self):
     
     #################################################################################################################
     # FFT Function
+
+    #Filtro butter bandpass  ############################################################
+    def butter_bandpass_filter(data, lowcut, highcut, order,fs):
+        nyquist = 0.5 * fs
+        lowcut = lowcut / nyquist
+        highcut = highcut / nyquist
+        b, a = butter(order, [lowcut, highcut], btype='band', analog=False)
+        y = filtfilt(b, a, data)
+        return y
+
+    #FFT ###############################################################################
+    def FFT_calc(datos, samplefreq):
+        n = len(datos)
+        fft_result = np.fft.rfft(datos)
+        freq_fft = np.fft.rfftfreq(len(datos), 1 / samplefreq)
+        amplitude = np.abs(fft_result)
+        phase = np.angle(fft_result)
+        return amplitude, freq_fft, phase
+
     def FreqSpectrum():
         
-        # Stop the plot process
-        self.timerPLOT.stop()
         # link the data of the first channel adquisition with the variable
         self.DAQ_Data=self.threadDAQ.DAQ_Data
-        # Calculate an high pass filter
-        self.data_DAQ2=butter_highpass_filter(self.DAQ_Data, self.lowFrequency, self.LaserFrequency, 3, "high")
-        # Calculate a low pass frequency, == pass-band filter
-        self.data_DAQ2=butter_highpass_filter(self.data_DAQ2, self.highFrequency, self.LaserFrequency, 3, "low")
-        
-        fft_result = np.fft.rfft(self.DAQ_Data)
-        self.dataFFTX = np.fft.rfftfreq(self.number_of_samples, 1 / self.LaserFrequency)
-        self.dataFFTY = np.abs(fft_result)
-
-        # FFT of the data Y axis
-        #yf = rfft(self.DAQ_Data)
-        # FFT of the data X axis
-        #xf = rfftfreq(int(self.number_of_samples), 1 / self.LaserFrequency)
-        # Absolute value of the FFT
-        #yf=np.abs(yf)
-        # Cut the FFT to the firsts values
-        #self.dataFFTX=xf#[:2000]
-        #self.dataFFTY=yf#[:2000]
+        self.data_DAQ2=butter_bandpass_filter(self.DAQ_Data, self.lowFrequency, self.highFrequency,3, self.LaserFrequency)
+        self.dataFFTY, self.dataFFTX, _=FFT_calc(self.DAQ_Data, self.LaserFrequency)
         # Save this data
         self.vectors[self.CounterRMS] = self.dataFFTY
         self.CounterRMS=self.CounterRMS+1
@@ -385,8 +387,7 @@ def insert_Arduino_graph2(self):
             #RMS average
             self.FreqData=np.sqrt(np.mean(np.square(self.vectors), axis=0))
         
-        # Re-launch the plot process
-        self.timerPLOT.start()
+
     
     #########################################################################################################################################
        
@@ -443,16 +444,12 @@ def insert_Arduino_graph2(self):
         self.DAQ_X_Axis=np.array(self.DAQ_X_Axis)*1000/(self.LaserFrequency)
         # Put the data in our variable
         self.DAQ_Data=self.threadDAQ.DAQ_Data
-        # Cut the data just to see the variation of FFT os speed
-        self.FreqX=self.dataFFTX
-        self.FreqY=self.FreqData
-        
-        
+
         # Update the voltage data
         self.DAQ_Diode=self.threadDAQ.DAQ_Diode
         # Update lines of the graphs
         self.data_line_Vol.setData(self.DAQ_X_Axis, self.DAQ_Data)
-        #self.data_line_Freq.setData(self.FreqX, self.FreqY) 
+        self.data_line_Freq.setData(self.dataFFTX, self.FreqData) 
         self.data_line_Vol_Diode.setData(self.DAQ_X_Axis,np.array(self.data_Diode_plot))
             
     # Creation of timer to calculate FFT
@@ -485,10 +482,9 @@ def deleteGraphs(self):
     self.timerSave.stop()
     # delete the thread
     self.threadDAQ.delete()
-    print("pasamooooss")
     self.threadArduino.delete()
-    print('pasamos x 2')
     #Remove the graphs to create new-ones
+    #self.ui.load_pages.LayoutColor.removeWidget(self.colorGraph)
     self.ui.load_pages.LayoutLaser.removeWidget(self.voltageGraph)
     self.ui.load_pages.LayoutLaser.removeWidget(self.freqGraph)
     self.ui.load_pages.LayoutLaser.removeWidget(self.DiodeGraph)
